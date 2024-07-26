@@ -41,7 +41,7 @@ interface CustomWindow extends Window {
   initManimBinder: (options?: initManimBinderOptions) => void
 }
 
-const DEFAULT_REPO = 'ManimCommunity/jupyter_examples'
+const DEFAULT_REPO = 'dibyendu/manim'
 const DEFAULT_BRANCH = 'main'
 const DEFAULT_STORAGE_EXPIRE = 60
 const DEFAULT_STORAGE_KEY = 'manim-notebook-kernel'
@@ -78,7 +78,7 @@ function main(window: CustomWindow) {
     branch: string,
     url: string = binder_url
   ) {
-    const binderUrl = `${url}/build/gh/${repo}/${branch}`
+    const binderUrl = `${url}/v2/gh/${repo}/${branch}`
     return new Promise<{
       baseUrl: string
       wsUrl: string
