@@ -387,12 +387,12 @@ const DEFAULT_BINDER_URL = "https://mybinder.org";
     wrapperDiv.appendChild(makeInteractiveButton);
 
     const makeInteractive = (_: any) => {
-      let code = element.textContent || "";
-      code += `\n\n# don't remove below command for run button to work`;
-      code += `\n%manim -qm --disable_caching -v WARNING ${manimClassname}`;
-      renderCell(wrapperDiv, code);
-    };
-    makeInteractiveButton.addEventListener("click", makeInteractive);
+      const code += `${element.textContent || ''}\n
+# don't remove the next command for the run button to work
+%manim -qm -v WARNING ${manimClassname}`
+      renderCell(wrapperDiv, code)
+    }
+    makeInteractiveButton.addEventListener('click', makeInteractive)
   }
 
   function initManimBinder({
