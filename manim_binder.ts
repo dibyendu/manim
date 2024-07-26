@@ -78,7 +78,7 @@ function main(window: CustomWindow) {
     branch: string,
     url: string = binder_url
   ) {
-    const binderUrl = `${url}/v2/gh/${repo}/${branch}`
+    const binderUrl = `${url}/build/gh/${repo}/${branch}`
     return new Promise<{
       baseUrl: string
       wsUrl: string
