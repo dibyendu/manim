@@ -45,7 +45,7 @@ class EllipseRay(Scene):
     x, y = self.find_intersection(a, b, x, y, θ)
     return θ, x, y
 
-    
+
   def construct(self):
     global θ
     global origin
@@ -59,20 +59,25 @@ class EllipseRay(Scene):
     self.add(ellipse)
 
     point = Dot([*origin, 0], radius=0.04, color=RED)  
-    path = TracedPath(point.get_center, stroke_width=0.8, dissipating_time=0.4, stroke_opacity=[0, 1])
+    path = TracedPath(point.get_center, stroke_width=0.6, dissipating_time=0.4, stroke_opacity=[0, 1])
     self.add(point, path)
+
+    message = Text(
+      'After how many reflections does the focal ray align itself with the major axis ?',
+      font_size=22
+    ).next_to(ellipse, UP, buff=0.1)
 
     try:
       x, y = self.find_intersection(a, b, *origin, θ)
-      self.play(point.animate.move_to([x, y, 0]))
-      self.wait()
+      self.play(point.animate.move_to([x, y, 0]), Write(message))
+
     except Exception as error:
       print(error)
 
     for _ in range(iteration):
       try:
         θ, x, y = self.find_intersection_after_reflection(a, b, x, y, θ)
-        path = TracedPath(point.get_center, stroke_width=0.8, dissipating_time=0.4, stroke_opacity=[0, 1])
+        path = TracedPath(point.get_center, stroke_width=0.6, dissipating_time=0.4, stroke_opacity=[0, 1])
         self.add(path)
         self.play(point.animate.move_to([x, y, 0]))
         self.wait()
